@@ -4,9 +4,6 @@
 import random
 
 
-def layout(a):
-    print("---------------")
-    print(a)
 
 
 class Pokemon:

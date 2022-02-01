@@ -1,4 +1,5 @@
 from pokemons import *
+
 import random
 
 NAMES = ['Stacy Meireles', 'George Ramires', 'Kaya Rico', 'Tiana Eanes', 'Ethan', 'Pavel', 'Kiara Macena',
@@ -34,10 +35,36 @@ class Pessoa:
     def show_pokemons(self):
         if self.pokemons:
             print(f'Pokemons de {self}:')
-            for pokemons in self.pokemons:
-                print(f'--> {pokemons}')
+            for i, pokemons in enumerate(self.pokemons):
+                print(f'{[ i ]} --> {pokemons}')
         else:
             print('Não tem nenhum Pokemon')
+    def choose_pokemon(self):
+        if self.pokemons:
+            pokemon_choice = random.choice(self.pokemons)
+            print(f"O INIMIGO ESCOLHEU {pokemon_choice}")
+            return pokemon_choice
+        else:
+            print('INIMIGO NÃO TEM POKEMONS')
+
+
+
+
+
+
+
+    def to_battle(self, pessoa):
+        print(f"{self} Iniciou uma BATALHA com {pessoa}")
+        print("-------------")
+        pessoa.show_pokemons()
+        pessoa.choose_pokemon()
+        print("-------------")
+        print("Escolha seus pokemons:")
+        self.choose_pokemon()
+
+        while True:
+            pass
+
 
 class Player(Pessoa):
     type = 'player'
@@ -47,6 +74,22 @@ class Player(Pessoa):
         print(f'{self} CAPTUROU UM {pokemon}')
     def __str__(self):
         return f'( {self.name} / PLAYER )'
+
+    def choose_pokemon(self):
+        self.show_pokemons()
+
+        if self.pokemons:
+            while True:
+                choose = input("Escolha digitando o número: ")
+                try:
+                    choose = int(choose)
+                    pokemon_choose = self.pokemons[choose]
+                    print(f'{pokemon_choose} FOI O ESCOLHIDO')
+                    return pokemon_choose
+                except:
+                    print("Escolha invalida")
+        else:
+            print('este jogador não tem pokemons ')
 
 
 class Inimigo(Pessoa):
@@ -68,17 +111,5 @@ class Inimigo(Pessoa):
     def __str__(self):
         return f'( {self.name} / INIMIGO )'
 
-
-pokemon_selvagem = PokemonFire('Charmander')
-
-eu = Player(name='Guilherme')
-
-print(eu)
-
-vizinho = Inimigo()
-print(vizinho)
-vizinho.show_pokemons()
-
-meu_pokemon = PokemonFire('Charmander')
 
 
