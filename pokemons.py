@@ -1,10 +1,23 @@
 #POKEPYTHON
 #Aqui aprendi bastante sobre classes, metodos e objeto
 
+import random
+
+
+def layout(a):
+    print("---------------")
+    print(a)
+
+
 class Pokemon:
-    def __init__(self, species, lvl=1, name=None):
+    def __init__(self, species, lvl=None, name=None):
         self.species = species
-        self.lvl = lvl
+
+        if lvl:
+            self.lvl = lvl
+        else:
+            self.lvl = random.randint(1, 50)
+
         if name:
             self.name = name
         else:
