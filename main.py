@@ -2,25 +2,27 @@
 #Aqui aprendi bastante sobre classes, metodos e objeto
 
 class Pokemon:
-    def __init__(self, tipo, especie, lvl=1, nome=None):
-        self.tipo = tipo
-        self.especie = especie
-        if nome:
-            self.nome = nome
-        else:
-            self.nome = especie
+    def __init__(self, species, lvl=1, name=None):
+        self.species = species
         self.lvl = lvl
+        if name:
+            self.name = name
+        else:
+            self.name = species
     def __str__(self):
-        return f"{self.nome}, {self.lvl}"
-    def atacar(self, pokemon):
-        print(f"{self} ATACOU {pokemon}")
+        return f"{self.name} ({self.lvl})"
 
+class PokemonElectric(Pokemon):
+    type = 'Eletrico'
+    def attack(self, pokemonAdversary):
+        print(f'{self} ATACOU COM UM RAIO NO {pokemonAdversary}')
 
+class PokemonFire(Pokemon):
+    type = 'Fogo'
+    def attack(self, pokemonAdversary):
+        print(f'{self} ATACOU COM UMA BOLA DE FOGO NO {pokemonAdversary}')
 
-
-
-meu_pokemon = Pokemon('fogo', 'Charmander')
-
-print(meu_pokemon)
-
-
+class PokemonAquatic(Pokemon):
+    type = 'ÁGUA'
+    def attack(self, pokemonAdversary):
+        print(f'{self} ATACOU COM UM JATO DE ÁGUA O {pokemonAdversary}')
